@@ -1,0 +1,7 @@
+- name: First Playbook
+  hosts: all
+  remote_user: youssef
+  tasks:
+  - name: Mon Debug
+    debug:
+      msg: "{{ var1 }}"

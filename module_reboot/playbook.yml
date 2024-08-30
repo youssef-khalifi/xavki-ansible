@@ -1,0 +1,29 @@
+- name: mon premier playbook
+  hosts: 192.168.216.132
+  become: yes
+  tasks:
+  - name: create file
+    file:
+      path: /tmp/xavki.txt
+      state: touch
+
+  - name: test
+    stat:
+      path: /tmp/xavki.txt
+    register: __file_exist
+
+  - name: lancement du reboot avec reboot
+    reboot:
+      msg: "Reboot via ansible"
+      connect_timeout: 5
+      reboot_timeout: 300
+      pre_reboot_delay: 0
+      post_reboot_delay: 30
+      test_command: uptime
+    when: __file_exist.stat.exists
+
+  - name: file2
+    file:
+      path: /tmp/xavki2.txt
+      state: touch
+

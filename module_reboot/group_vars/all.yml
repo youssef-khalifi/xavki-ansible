@@ -1,0 +1,5 @@
+mondic:
+- { dir: "dir1", file: "file1.txt" }
+- { dir: "dir2", file: "file2.txt" }
+- { dir: "dir3", file: "file3.txt" }
+

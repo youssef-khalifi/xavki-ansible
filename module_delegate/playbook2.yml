@@ -1,0 +1,11 @@
+- name: my playbook
+  hosts: all
+  connection: local
+  become: yes
+  tasks:
+
+  - name: creation de fichier en local
+    file:
+      path: /tmp/file.txt
+      state: touch
+

@@ -1,0 +1,15 @@
+- name: my playbook
+  hosts: all
+  become: yes
+  tasks:
+
+  - name: local_action
+    local_action: "command touch /tmp/test.txt"
+
+
+  - name: create file
+    file:
+      state: touch
+      path: /tmp/xavki.txt
+    delegate_to: 192.168.216.139
+    run_once: yes

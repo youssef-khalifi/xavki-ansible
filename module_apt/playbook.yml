@@ -1,0 +1,11 @@
+
+- name: module stat et register
+  hosts: 192.168.216.132
+  become: true
+  tasks:
+  - name: install nano
+    apt:
+      name: nano
+      state: latest
+      update_cache: yes
+      cache_valid_time: 3600

@@ -1,0 +1,25 @@
+
+- name: module stat et register
+  hosts: 192.168.216.132
+  become: true
+  tasks:
+  - name: create a file
+    file:
+      path: /tmp/file.txt
+      state: touch
+      owner: youssef
+
+  - name: stat de file.txt
+    stat:
+      path: /tmp/file.txt
+    register: __rslt
+
+  - name: affichage de stat
+    debug:
+      msg: "{{ __rslt.stat.exists }}"
+
+  - name: create another file
+    file:
+      path: /tmp/file2.txt
+      state: touch
+    when: __rslt.stat.exists == True

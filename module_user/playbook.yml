@@ -1,0 +1,18 @@
+
+- name: module user
+  hosts: all
+  become: true
+  tasks:
+  - name: create user  ali
+    user: 
+      name: ali
+      state: present
+      groups: sudo
+      uid: 1200
+      generate_ssh_key: yes
+      password: "{{ '12345' | password_hash('sha512') }}"
+
+  - name: delete user
+    user:
+      name: ali
+      state: absent

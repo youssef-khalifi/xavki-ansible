@@ -1,0 +1,10 @@
+
+- name: module stat et register
+  hosts: 192.168.216.132
+  become: true
+  tasks:
+  - name: create directory
+    file:
+      path: /tmp/ussf/{{ item.dir }}/{{ item.file }}
+      state: directory
+    with_items: "{{ mondic }}"

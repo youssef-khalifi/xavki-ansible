@@ -1,0 +1,31 @@
+- name: playbook de test
+  become: true
+  hosts: 192.168.216.132
+  tasks:
+  - name: create a file
+    file:
+      path: /tmp/file.txt
+      state: touch
+      owner: youssef
+      mode: "744"
+
+  - name: check if file created
+    stat:
+      path: /tmp/file.txt
+    register: __var
+
+  - name: reboot the machine
+    reboot:
+      connect_timeout: 5
+      msg: "this machine will rebooted"
+      post_reboot_delay: 60
+      pre_reboot_delay: 60
+      reboot_timeout: 120
+      test_command: uptime
+
+  - name: create final file
+    file:
+      path: /tmp/final.txt
+      state: touch
+    when: __var.stat.exists == true
+

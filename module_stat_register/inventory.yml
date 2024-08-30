@@ -1,0 +1,11 @@
+all:
+  children:
+    common:
+      children:
+        webserver:
+          hosts:
+            192.168.216.132:
+            192.168.216.133:
+        dbserver:
+          hosts:
+            192.168.216.134:

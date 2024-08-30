@@ -1,0 +1,14 @@
+---
+- name: SSH playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: Generate SSH keypair
+      openssh_keypair:
+        path: /tmp/ssh
+        type: rsa
+        size: 4096
+        state: present
+        force: no
+      delegate_to: localhost
+      run_once: true
