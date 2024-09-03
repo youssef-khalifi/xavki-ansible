@@ -5,7 +5,7 @@
 
   - name: module copy
     copy:
-      src: /tmp/ussf
-      dest: /home/youssef
-      remote_src: yes
-
+      src: "{{ item }}"
+      dest: /tmp
+    with_fileglob:
+    - file*
