@@ -1,0 +1,25 @@
+- name: playbook
+  hosts: all
+  become: yes
+  tasks:
+
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+      update_cache: yes
+
+  - name: create a file
+    file:
+      state: touch
+      path: /tmp/file.txt
+      owner: root
+      group: root
+      mode: '0644'
+    notify: restart_jenkins
+
+  handlers:
+    - name: restart_jenkins
+      systemd:
+        name: nginx
+        state: reloaded

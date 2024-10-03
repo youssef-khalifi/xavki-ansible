@@ -1,0 +1,14 @@
+- name: playbook
+  become: yes
+  hosts: all
+  vars:
+    mot: "hey"
+  tasks:
+
+  - name:
+    template:
+      src: file.yml.j2
+      dest: /tmp/file2.yml
+      owner: youssef
+      mode: 0755
+      backup: yes
